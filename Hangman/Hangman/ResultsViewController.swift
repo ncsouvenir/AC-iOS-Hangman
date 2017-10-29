@@ -13,6 +13,9 @@ import UIKit
 class ResultsViewController: UIViewController {
     //instance of VC
       var gameVC = ViewController()
+    //instance of brain
+    var rules = HangmanBrain()
+    
 
    //Results View connections and outlets
     @IBOutlet weak var playAgainButton: UIButton!
@@ -26,7 +29,7 @@ class ResultsViewController: UIViewController {
         ///Lose Scenario: what needs to happen on the ResultsView
         resultLabel.text = "You Lost!"
         rightWordLabel.text = "The correct word was: \(rules.secretWord)"
-        gameVC.manSevenImage.isHidden = false
+        //gameVC.manSevenImage!.isHidden = false
         winImage.isHidden = true
     }
     
@@ -45,8 +48,8 @@ class ResultsViewController: UIViewController {
         gameVC.manSixImage.isHidden = true
         gameVC.manSevenImage.isHidden = true
         
+        rules.numberOfWrongGuessesLeft = 0
         gameVC.secretWordTextField.clearsOnBeginEditing = true
-        //rules.numberOfGuessesLeft = 0
         gameVC.remainingGuessesLabel.isHidden = true
         gameVC.boardLabel.isHidden = true
         gameVC.gameUpdateLabel.isHidden = true
