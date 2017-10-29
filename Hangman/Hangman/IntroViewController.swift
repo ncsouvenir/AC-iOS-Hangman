@@ -12,17 +12,14 @@ import UIKit
 
 
 class IntroViewController: UIViewController {
-//Main View connections and outlets
+//Intro View connections and outlets
+    @IBOutlet weak var hangmanLabel: UILabel!
+    @IBOutlet weak var startGameButton: UIButton!
     
     
-    //goes inside button action
-    //when user clicks on start game, the segue action will be performed
+   
+    
  
-    
-    
-    
-    
-    
     
     
     

@@ -12,10 +12,10 @@
 		3E1A62181F97B0930025E03C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E1A62161F97B0930025E03C /* Main.storyboard */; };
 		3E1A621A1F97B0930025E03C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E1A62191F97B0930025E03C /* Assets.xcassets */; };
 		3E1A621D1F97B0930025E03C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E1A621B1F97B0930025E03C /* LaunchScreen.storyboard */; };
+		810B2D001FA59ABE0055F400 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810B2CFF1FA59ABE0055F400 /* ResultsViewController.swift */; };
 		816424FD1FA53C090006BB98 /* HangmanBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816424FC1FA53C090006BB98 /* HangmanBrain.swift */; };
 		816424FF1FA571090006BB98 /* RoundButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816424FE1FA571090006BB98 /* RoundButtons.swift */; };
 		816425011FA57B010006BB98 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816425001FA57B010006BB98 /* IntroViewController.swift */; };
-		816425031FA57B920006BB98 /* WinLoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816425021FA57B920006BB98 /* WinLoseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,10 +26,10 @@
 		3E1A62191F97B0930025E03C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E1A621C1F97B0930025E03C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E1A621E1F97B0930025E03C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		810B2CFF1FA59ABE0055F400 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		816424FC1FA53C090006BB98 /* HangmanBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangmanBrain.swift; sourceTree = "<group>"; };
 		816424FE1FA571090006BB98 /* RoundButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtons.swift; sourceTree = "<group>"; };
 		816425001FA57B010006BB98 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
-		816425021FA57B920006BB98 /* WinLoseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinLoseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +66,7 @@
 				816424FC1FA53C090006BB98 /* HangmanBrain.swift */,
 				816425001FA57B010006BB98 /* IntroViewController.swift */,
 				3E1A62141F97B0930025E03C /* ViewController.swift */,
-				816425021FA57B920006BB98 /* WinLoseViewController.swift */,
+				810B2CFF1FA59ABE0055F400 /* ResultsViewController.swift */,
 				816424FE1FA571090006BB98 /* RoundButtons.swift */,
 				3E1A62121F97B0930025E03C /* AppDelegate.swift */,
 				3E1A62191F97B0930025E03C /* Assets.xcassets */,
@@ -148,12 +148,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				816425031FA57B920006BB98 /* WinLoseViewController.swift in Sources */,
 				816425011FA57B010006BB98 /* IntroViewController.swift in Sources */,
 				816424FF1FA571090006BB98 /* RoundButtons.swift in Sources */,
 				816424FD1FA53C090006BB98 /* HangmanBrain.swift in Sources */,
 				3E1A62151F97B0930025E03C /* ViewController.swift in Sources */,
 				3E1A62131F97B0930025E03C /* AppDelegate.swift in Sources */,
+				810B2D001FA59ABE0055F400 /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
