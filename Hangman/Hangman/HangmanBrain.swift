@@ -11,7 +11,6 @@ enum GameStateUpdate {
     case correct
     case wrong
     case alreadyUsed
-    
 }
 class HangmanBrain {
     enum GameState {
@@ -39,11 +38,22 @@ class HangmanBrain {
         }
         return gameBoardArray
     }
+    ///func that appends letters guessed into usedLettersArray
+    func appendToUsedLettersArray(_ playerGuess: String) -> String{
+        //for letter in playerGuess {
+            if gameBoardArray.contains(playerGuess) || !gameBoardArray.contains(playerGuess){
+                usedLettersArray.append(playerGuess)
+                //keep adding letter to usedLettersArray every iteration
+                //letter += 1
+            }
+        //}
+        return playerGuess
+    }
     ///func for guessing letter
     func getGuessedLetter(from playerGuess: String) -> GameStateUpdate {
         //correct and wrong letter check
         if !secretWord.contains(playerGuess){
-            usedLettersArray.append(playerGuess)
+            //usedLettersArray.append(playerGuess)
             numberOfWrongGuessesLeft -= 1
             usedLettersArray.append(playerGuess)
             return .wrong
@@ -51,7 +61,7 @@ class HangmanBrain {
         if usedLettersArray.contains(playerGuess) {
             return .alreadyUsed
         }
-        usedLettersArray.append(playerGuess)
+        //usedLettersArray.append(playerGuess)
         print(playerGuess)
         return .correct
     }
