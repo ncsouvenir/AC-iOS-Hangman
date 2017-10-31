@@ -7,159 +7,144 @@
 //
 
 import UIKit
-
-
 class ViewController: UIViewController, UITextFieldDelegate {
     
     //Main View connections and outlets
     @IBOutlet weak var secretWordTextField: UITextField!
     @IBOutlet weak var letterTextField: UITextField!
-    
-    @IBOutlet weak var remainingGuessesLabel: UILabel!
     @IBOutlet weak var letterEnterLabel: UILabel!
     @IBOutlet weak var boardLabel: UILabel!
     @IBOutlet weak var gameUpdateLabel: UILabel!
+    @IBOutlet weak var usedLettersLabel: UILabel!
     
     ///bodyparts
     @IBOutlet weak var hangmanPostImage: UIImageView!
-    @IBOutlet weak var manOneImage: UIImageView!
-    @IBOutlet weak var manTwoImage: UIImageView!
-    @IBOutlet weak var manThreeImage: UIImageView!
-    @IBOutlet weak var manFourImage: UIImageView!
-    @IBOutlet weak var manFiveImage: UIImageView!
-    @IBOutlet weak var manSixImage: UIImageView!
-    @IBOutlet weak var manSevenImage: UIImageView!
-    
-    //instance of brain
+    @IBOutlet weak var hangmanImage: UIImageView!
+    //instances for other View Controllers
     var rules = HangmanBrain()
+    var endPage = ResultsViewController()
+    var myImageView = UIImageView()
     
-    override func viewDidLoad() {
+    override func viewDidLoad(){
+        playAgain()
         super.viewDidLoad()
-        manOneImage.isHidden = true
-        manTwoImage.isHidden = true
-        manThreeImage.isHidden = true
-        manFourImage.isHidden = true
-        manFiveImage.isHidden = true
-        manSixImage.isHidden = true
-        manSevenImage.isHidden = true
-        
+        hangmanImage.isHidden = false
         hangmanPostImage.isHidden = false
-        remainingGuessesLabel.isHidden = true
         letterEnterLabel.text = "Enter a letter:"
         gameUpdateLabel.isHidden = true
         boardLabel.isHidden = true
+        letterTextField.isUserInteractionEnabled = true
         //delegate set-up
         secretWordTextField.delegate = self
         letterTextField.delegate = self
     }
+        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            //can only enter a-z
+            let characterSet = CharacterSet.letters
+            if string.rangeOfCharacter(from: characterSet.inverted) != nil {
+                return false
+            }
+         
+//            if textField == letterTextField {
+//                guard string.count == 1, letterTextField.text!.count < 1 else {
+//                    return false
+//                }
+//            }
+            return true
+        }
     
-    /////text field delegates
-    /// clears text fields after letter entry
-    //     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-    //     }
-    //
-    
-    
-//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//        print("Should begin")
-//        becomeFirstResponder()
-//        return true
-//    }
-    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        print("Should begin")
+        becomeFirstResponder()
+        return true
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        resignFirstResponder()
         //make sure that the text field has something in ti otherwise don't run
         guard let text = textField.text  else {
             return false
         }
-    
+        //if textField == the secret word entered in...
         if textField == secretWordTextField {
-            print("kite")
-            let _ = rules.makeGameBoard(from: text)
+            let board = rules.makeGameBoard(from: text)
             boardLabel.isHidden = false
-            textField.resignFirstResponder()
+            boardLabel.text = board.joined(separator: " ")
+            rules.secretWord = text
+            secretWordTextField.isEnabled = false
         }
-        
         if textField == letterTextField {
-            ///switching on player two's guess
             switch rules.getGuessedLetter(from: text) {
-                    case .correct:
-                        print("RIGHT!")
-                        // correct letter and update label
-                        gameUpdateLabel.isHidden = false
-                        gameUpdateLabel.text = "Correct! Guess another letter."
-                    case .wrong:
-                        print("WRONG)")
-                        // wrong letter: update label and hangman image
-                        remainingGuessesLabel.isHidden = false
-                        remainingGuessesLabel.text = "Guesses left: \(rules.numberOfWrongGuessesLeft)"
-                        gameUpdateLabel.isHidden = false
-                        gameUpdateLabel.text = "Wrong!\(rules.numberOfWrongGuessesLeft) guesses left"
-                       //let _ = drawHangman()
-                    case .alreadyGuessed:
-                        gameUpdateLabel.isHidden = false
-                        gameUpdateLabel.text = "Letter already guessed."
-                    }
+            case .used:
+                 gameUpdateLabel.text = "\"\(text)\" already chosen."
+                return false //prevents user from entering this letter
+            case .correct:
+                let updatedGameBoard = rules.updateGameBoardArray(text)
+                boardLabel.text = updatedGameBoard.joined(separator:" ")
+                usedLettersLabel.isHidden = false
+                gameUpdateLabel.isHidden = false
+                gameUpdateLabel.text = "Correct! Guess another letter."
+                usedLettersLabel.text = "used letters: "
+                textField.resignFirstResponder()
+            case .wrong:
+                switch rules.numberOfWrongGuessesLeft {
+                case 1:
+                    hangmanImage.image = #imageLiteral(resourceName: "man1")
+                case 2:
+                    hangmanImage.image = #imageLiteral(resourceName: "man2")
+                case 3:
+                    hangmanImage.image = #imageLiteral(resourceName: "man3")
+                case 4:
+                    hangmanImage.image = #imageLiteral(resourceName: "man4")
+                case 5:
+                    hangmanImage.image = #imageLiteral(resourceName: "man5")
+                case 6:
+                    hangmanImage.image = #imageLiteral(resourceName: "man6")
+                case 7:
+                    hangmanImage.image = #imageLiteral(resourceName: "man7")
+                default:
+                    break
+                }
+                textField.resignFirstResponder()
+                gameUpdateLabel.isHidden = false
+                gameUpdateLabel.text = "Wrong! \(rules.numberOfWrongGuessesLeft) guesses left"
+            }
+            switch rules.victoryCheck(){
+            case .victory:
+                gameUpdateLabel.text = "win"
+                performSegue(withIdentifier: "winOrLoseSegue", sender: self)
+            case .lose:
+                letterTextField.isUserInteractionEnabled = false
+                gameUpdateLabel.text = "lose"
+                performSegue(withIdentifier: "winOrLoseSegue", sender: self)
+            case .ongoing:
+                return true
+            }
+             letterTextField.text = ""
             textField.resignFirstResponder()
         }
-
-        ///switching on win or loss
-        //        switch rules.GameState{
-        //        case .victory:
-        //            //go to results view controller...do later
-        //        case .lose:
-        //        }
-        
-
-        
-        //have to set first responder
-        textField.resignFirstResponder()
         return true
+    } //end return func
+    func playAgain(){
+        hangmanImage.isHidden = true
+        letterTextField.isUserInteractionEnabled = false
+        usedLettersLabel.text = "used letters: "
+        usedLettersLabel.isHidden = false
+        rules.numberOfWrongGuessesLeft = 0
+        secretWordTextField.clearsOnBeginEditing = true
+        boardLabel.isHidden = true
+        gameUpdateLabel.isHidden = true
+        secretWordTextField.isEnabled = true
     }
-    
-    //     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    //     //entering only letters a-z
-    //     //can only enter one letter at a time
-    //     //can't delete letters
-    //
-    //     }
-    ///func for drawing hangman
-//    func drawHangman() -> UIImageView {
-//        if (rules.numberOfWrongGuessesLeft == 1) {
-//            return manSevenImage!
-//        }
-//        if (rules.numberOfWrongGuessesLeft == 2) {
-//            return manSixImage!
-//        }
-//        if (rules.numberOfWrongGuessesLeft == 3) {
-//            return manFiveImage!
-//        }
-//        if (rules.numberOfWrongGuessesLeft == 4) {
-//            return manFourImage!
-//        }
-//        if (rules.numberOfWrongGuessesLeft == 5) {
-//            return manThreeImage!
-//        }
-//        if (rules.numberOfWrongGuessesLeft == 6) {
-//            return manTwoImage!
-//        }
-//        return UIImageView
-//    }
-
-}
-
-
-
-///// instantiation and presenting will go under this case. This is the lose scenario logic from my HangManBrain.swift file. Only working with losing scenario right now until it works.
-//
-///// When the users guess ==  numberOfGuessesLeft(7) (that code is in HangManBrain.swift file), instantiate resultsViewController in Code and “present” it
-//
-/////not exactly sure if this goes here or in my results view controller?
-//
-/////instantiating ResultsViewController: need to unwrap?
-////1: create constant variable using storyboard
-//let storyboard = UIStoryboard(name: "Main", bundle: nil)
-////2: create constant for ResultsViewController --> used to navigate to that VC
-//let resultsViewController = storyboard.instantiateViewController(withIdentifier :"ResultsViewController") as! ResultsViewController
-//self.present(resultsViewController, animated: true, completion: nil)
+    //preparing segue to ResultsViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let resultsViewController = segue.destination as? ResultsViewController{
+            //passing data over to ResultsViewController
+            if gameUpdateLabel.text == "win"{
+                resultsViewController.resultLabelTwo = "You win!"
+            } else {
+                resultsViewController.resultLabelTwo = "You lose!"
+                //resultsViewController.rightWordLabel.text = "The secret word was \(rules.secretWord)"
+            }
+        }
+    }
+}//end of VC Class
 

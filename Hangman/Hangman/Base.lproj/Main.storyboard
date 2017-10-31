@@ -27,7 +27,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="gamestate update label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Gt-lf-fKT">
-                                <rect key="frame" x="70" y="514" width="275" height="40"/>
+                                <rect key="frame" x="0.0" y="514" width="414" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="23"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,62 +40,19 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="guesses left label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gn0-MD-vkV">
-                                <rect key="frame" x="195" y="303" width="195" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="board label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5p-Gl-NDh">
                                 <rect key="frame" x="25" y="420" width="365" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="32"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter secret word" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rhh-8V-4bA">
-                                <rect key="frame" x="43" y="42" width="328" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="19"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                        <color key="value" red="1" green="1" blue="1" alpha="0.25" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hangmanPost" translatesAutoresizingMaskIntoConstraints="NO" id="2g5-14-dfX">
                                 <rect key="frame" x="63" y="89" width="235" height="271"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="man1" translatesAutoresizingMaskIntoConstraints="NO" id="CNa-oU-New">
-                                <rect key="frame" x="192" y="101" width="117" height="168"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="man2" translatesAutoresizingMaskIntoConstraints="NO" id="NyV-i2-7gO">
-                                <rect key="frame" x="197" y="101" width="106" height="168"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="man3" translatesAutoresizingMaskIntoConstraints="NO" id="Kqk-na-Ven">
-                                <rect key="frame" x="197" y="101" width="106" height="168"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="man4" translatesAutoresizingMaskIntoConstraints="NO" id="LIM-gN-B9w">
-                                <rect key="frame" x="195" y="101" width="106" height="168"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="man5" translatesAutoresizingMaskIntoConstraints="NO" id="EUP-GH-sp6">
-                                <rect key="frame" x="197" y="101" width="106" height="168"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="man6" translatesAutoresizingMaskIntoConstraints="NO" id="dCA-Ke-rjR">
-                                <rect key="frame" x="195" y="101" width="106" height="168"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="man7" translatesAutoresizingMaskIntoConstraints="NO" id="Zha-UM-PBN">
-                                <rect key="frame" x="195" y="101" width="106" height="168"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CNa-oU-New">
+                                <rect key="frame" x="189" y="103" width="117" height="168"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="a" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OYX-sw-nAd">
@@ -109,10 +66,33 @@
                                         <color key="value" red="1" green="1" blue="1" alpha="0.2520066352739726" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="iLv-KM-Blw" kind="show" identifier="returnResultLabel" id="bq5-S8-Cye"/>
-                                </connections>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter word:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qib-0N-0T2">
+                                <rect key="frame" x="12" y="35" width="154" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter secret word" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rhh-8V-4bA">
+                                <rect key="frame" x="151" y="31" width="233" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="0.25" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="usedletters label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pB-s3-VoN">
+                                <rect key="frame" x="141" y="305" width="233" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -120,18 +100,13 @@
                     <connections>
                         <outlet property="boardLabel" destination="L5p-Gl-NDh" id="vNT-MP-xSV"/>
                         <outlet property="gameUpdateLabel" destination="2Gt-lf-fKT" id="Dp5-49-oay"/>
+                        <outlet property="hangmanImage" destination="CNa-oU-New" id="082-VM-zGf"/>
                         <outlet property="hangmanPostImage" destination="2g5-14-dfX" id="o6g-D5-KeP"/>
                         <outlet property="letterEnterLabel" destination="dVm-xM-91g" id="qkR-f2-rdm"/>
                         <outlet property="letterTextField" destination="OYX-sw-nAd" id="DC8-C5-Mxs"/>
-                        <outlet property="manFiveImage" destination="EUP-GH-sp6" id="TpO-Rt-lhz"/>
-                        <outlet property="manFourImage" destination="LIM-gN-B9w" id="xZY-iQ-5NQ"/>
-                        <outlet property="manOneImage" destination="CNa-oU-New" id="PHl-IF-2Dx"/>
-                        <outlet property="manSevenImage" destination="Zha-UM-PBN" id="TEQ-wv-VBy"/>
-                        <outlet property="manSixImage" destination="dCA-Ke-rjR" id="4Ok-l0-pLJ"/>
-                        <outlet property="manThreeImage" destination="Kqk-na-Ven" id="kPU-9W-1Ao"/>
-                        <outlet property="manTwoImage" destination="NyV-i2-7gO" id="bUN-kW-ykL"/>
-                        <outlet property="remainingGuessesLabel" destination="Gn0-MD-vkV" id="8v5-HR-knV"/>
                         <outlet property="secretWordTextField" destination="rhh-8V-4bA" id="Vvz-6s-WxX"/>
+                        <outlet property="usedLettersLabel" destination="3pB-s3-VoN" id="NZf-no-WOW"/>
+                        <segue destination="iLv-KM-Blw" kind="show" identifier="winOrLoseSegue" id="aJp-yZ-88c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -162,19 +137,16 @@
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="startGame" id="bDs-l5-XT6"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="H.A.N.G.M.A.N" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzn-ej-ejp">
-                                <rect key="frame" x="0.0" y="167" width="414" height="180"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gameTitle" translatesAutoresizingMaskIntoConstraints="NO" id="t1E-ob-DyZ">
+                                <rect key="frame" x="87" y="130" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="yoa-4p-LLR"/>
                     </view>
                     <connections>
-                        <outlet property="hangmanLabel" destination="dzn-ej-ejp" id="y5g-Xq-XBY"/>
+                        <outlet property="hangmanTitle" destination="t1E-ob-DyZ" id="nby-TH-IdN"/>
                         <outlet property="startGameButton" destination="GDf-qs-riX" id="JMZ-HY-zuz"/>
                     </connections>
                 </viewController>
@@ -210,7 +182,7 @@
                                 </state>
                                 <connections>
                                     <action selector="playAgainButton:" destination="iLv-KM-Blw" eventType="touchUpInside" id="dXj-WF-PUz"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="playAgain" id="rvh-cD-gKN"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="playAgainSegue" id="rvh-cD-gKN"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="rightword label " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6n-Ep-fCf">
@@ -249,14 +221,8 @@
     <resources>
         <image name="background4" width="1920" height="1920"/>
         <image name="background5" width="1280" height="812"/>
+        <image name="gameTitle" width="543" height="125"/>
         <image name="hangmanPost" width="250" height="250"/>
-        <image name="man1" width="75" height="177"/>
-        <image name="man2" width="75" height="175"/>
-        <image name="man3" width="75" height="175"/>
-        <image name="man4" width="75" height="175"/>
-        <image name="man5" width="75" height="175"/>
-        <image name="man6" width="75" height="175"/>
-        <image name="man7" width="75" height="175"/>
         <image name="winImage" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
