@@ -10,20 +10,19 @@ import Foundation
 enum GameStateUpdate {
     case correct
     case wrong
-    case used
-    //case alreadyGuessed
+    case alreadyUsed
+    
 }
 class HangmanBrain {
     enum GameState {
-        case victory, lose, ongoing
+        case victory, defeat, ongoing
     }
-    //playerOne
     var secretWord: String = ""
     var gameBoardArray = [String]() // ["_", "_" ,"_"]
+    var usedLettersArray: [String] = []
     var numberOfWrongGuessesLeft = 7
-    var usedLetters: [String] = []
     
-    ///func for creating secret word and creating board
+    ///func for creating secret
     func makeGameBoard(from word: String) -> [String]{
         //This sets the empty gameBoard to length of secret word
         for _ in 0..<word.count {
@@ -31,6 +30,7 @@ class HangmanBrain {
         }
         return gameBoardArray
     }
+    ///func for updating board
     func updateGameBoardArray(_ playerGuess: String) -> [String] {
         for letter in 0..<secretWord.count {
             if playerGuess == String(secretWord[secretWord.index(secretWord.startIndex, offsetBy: letter)]) {
@@ -43,20 +43,22 @@ class HangmanBrain {
     func getGuessedLetter(from playerGuess: String) -> GameStateUpdate {
         //correct and wrong letter check
         if !secretWord.contains(playerGuess){
+            usedLettersArray.append(playerGuess)
             numberOfWrongGuessesLeft -= 1
-            usedLetters.append(playerGuess)
+            usedLettersArray.append(playerGuess)
             return .wrong
         }
-        if usedLetters.contains(playerGuess) {
-            return .used
+        if usedLettersArray.contains(playerGuess) {
+            return .alreadyUsed
         }
-        usedLetters.append(playerGuess)
+        usedLettersArray.append(playerGuess)
+        print(playerGuess)
         return .correct
     }
     ///func for result scenario
     func victoryCheck() -> GameState {
         if numberOfWrongGuessesLeft == 0 {
-            return .lose
+            return .defeat
         }
         if !gameBoardArray.contains("_") {
             return .victory

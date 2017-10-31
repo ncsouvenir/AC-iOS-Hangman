@@ -13,10 +13,9 @@ import UIKit
 
 class IntroViewController: UIViewController {
     //Intro View connections and outlets
-    
-    @IBOutlet weak var hangmanTitle: UIImageView!
+
     @IBOutlet weak var startGameButton: UIButton!
-    
+    @IBOutlet weak var hangmanWordTitle: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

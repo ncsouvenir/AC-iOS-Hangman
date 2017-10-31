@@ -137,22 +137,25 @@
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="startGame" id="bDs-l5-XT6"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gameTitle" translatesAutoresizingMaskIntoConstraints="NO" id="t1E-ob-DyZ">
-                                <rect key="frame" x="87" y="130" width="240" height="128"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="HANGMAN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmO-MY-UtC">
+                                <rect key="frame" x="58" y="133" width="298" height="115"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="50"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="yoa-4p-LLR"/>
                     </view>
                     <connections>
-                        <outlet property="hangmanTitle" destination="t1E-ob-DyZ" id="nby-TH-IdN"/>
+                        <outlet property="hangmanWordTitle" destination="mmO-MY-UtC" id="rpB-IB-23a"/>
                         <outlet property="startGameButton" destination="GDf-qs-riX" id="JMZ-HY-zuz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLq-ol-bx0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-461" y="-1154"/>
+            <point key="canvasLocation" x="-346" y="-1165"/>
         </scene>
         <!--Results View Controller-->
         <scene sceneID="HPR-y0-hUP">
@@ -221,11 +224,10 @@
     <resources>
         <image name="background4" width="1920" height="1920"/>
         <image name="background5" width="1280" height="812"/>
-        <image name="gameTitle" width="543" height="125"/>
         <image name="hangmanPost" width="250" height="250"/>
         <image name="winImage" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rvh-cD-gKN"/>
+        <segue reference="bDs-l5-XT6"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -21,15 +21,17 @@ class ResultsViewController: UIViewController {
     var rules = HangmanBrain()
     
     var resultLabelTwo: String!
+    var correctWord: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         resultLabel.text = resultLabelTwo
         rightWordLabel.isHidden = true
         winImage.isHidden = true
+        rightWordLabel.text = "The secret word was \(rules.secretWord)"
     }
-
-     //rightWordLabel.text = "The secret word was \(rules.secretWord)"
+    
+    
     
     @IBAction func playAgainButton(_ sender: UIButton) {
         //perform segue
@@ -38,6 +40,6 @@ class ResultsViewController: UIViewController {
     
     
     
-//dont need to prepare segue.. just pressing a button
-   
+    //dont need to prepare segue becuase you're not passing any data... just pressing a button
+    
 }

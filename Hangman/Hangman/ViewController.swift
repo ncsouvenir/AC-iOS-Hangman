@@ -38,26 +38,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
         secretWordTextField.delegate = self
         letterTextField.delegate = self
     }
-        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            //can only enter a-z
-            let characterSet = CharacterSet.letters
-            if string.rangeOfCharacter(from: characterSet.inverted) != nil {
-                return false
-            }
-         
-//            if textField == letterTextField {
-//                guard string.count == 1, letterTextField.text!.count < 1 else {
-//                    return false
-//                }
-//            }
-            return true
-        }
+    //        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    //            //can only enter a-z
+    //            let characterSet = CharacterSet.letters
+    //            if string.rangeOfCharacter(from: characterSet.inverted) != nil {
+    //                return false
+    //            }
+    //
+    ////            if textField == letterTextField {
+    ////                guard string.count == 1, letterTextField.text!.count < 1 else {
+    ////                    return false
+    ////                }
+    ////            }
+    //            return true
+    //        }
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        print("Should begin")
-        becomeFirstResponder()
-        return true
-    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //make sure that the text field has something in ti otherwise don't run
         guard let text = textField.text  else {
@@ -73,8 +68,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         if textField == letterTextField {
             switch rules.getGuessedLetter(from: text) {
-            case .used:
-                 gameUpdateLabel.text = "\"\(text)\" already chosen."
+            case .alreadyUsed:
+                gameUpdateLabel.isHidden = false
+                gameUpdateLabel.text = "\"\(text)\" already chosen."
+                textField.resignFirstResponder()
                 return false //prevents user from entering this letter
             case .correct:
                 let updatedGameBoard = rules.updateGameBoardArray(text)
@@ -82,23 +79,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 usedLettersLabel.isHidden = false
                 gameUpdateLabel.isHidden = false
                 gameUpdateLabel.text = "Correct! Guess another letter."
-                usedLettersLabel.text = "used letters: "
+                usedLettersLabel.text = "used letters: \"\(text)\""
                 textField.resignFirstResponder()
             case .wrong:
                 switch rules.numberOfWrongGuessesLeft {
-                case 1:
-                    hangmanImage.image = #imageLiteral(resourceName: "man1")
-                case 2:
-                    hangmanImage.image = #imageLiteral(resourceName: "man2")
-                case 3:
-                    hangmanImage.image = #imageLiteral(resourceName: "man3")
-                case 4:
-                    hangmanImage.image = #imageLiteral(resourceName: "man4")
-                case 5:
-                    hangmanImage.image = #imageLiteral(resourceName: "man5")
                 case 6:
+                    hangmanImage.image = #imageLiteral(resourceName: "man1")
+                case 5:
+                    hangmanImage.image = #imageLiteral(resourceName: "man2")
+                case 4:
+                    hangmanImage.image = #imageLiteral(resourceName: "man3")
+                case 3:
+                    hangmanImage.image = #imageLiteral(resourceName: "man4")
+                case 2:
+                    hangmanImage.image = #imageLiteral(resourceName: "man5")
+                case 1:
                     hangmanImage.image = #imageLiteral(resourceName: "man6")
-                case 7:
+                case 0:
                     hangmanImage.image = #imageLiteral(resourceName: "man7")
                 default:
                     break
@@ -109,16 +106,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
             switch rules.victoryCheck(){
             case .victory:
-                gameUpdateLabel.text = "win"
+                gameUpdateLabel.text = "victory"
                 performSegue(withIdentifier: "winOrLoseSegue", sender: self)
-            case .lose:
+            case .defeat:
                 letterTextField.isUserInteractionEnabled = false
-                gameUpdateLabel.text = "lose"
+                gameUpdateLabel.text = "defeat"
                 performSegue(withIdentifier: "winOrLoseSegue", sender: self)
             case .ongoing:
                 return true
             }
-             letterTextField.text = ""
+            letterTextField.text = ""
             textField.resignFirstResponder()
         }
         return true
@@ -127,8 +124,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         hangmanImage.isHidden = true
         letterTextField.isUserInteractionEnabled = false
         usedLettersLabel.text = "used letters: "
-        usedLettersLabel.isHidden = false
-        rules.numberOfWrongGuessesLeft = 0
+        usedLettersLabel.isHidden = true
+        rules.numberOfWrongGuessesLeft = 7
         secretWordTextField.clearsOnBeginEditing = true
         boardLabel.isHidden = true
         gameUpdateLabel.isHidden = true
@@ -138,10 +135,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let resultsViewController = segue.destination as? ResultsViewController{
             //passing data over to ResultsViewController
-            if gameUpdateLabel.text == "win"{
+            if gameUpdateLabel.text == "victory"{
                 resultsViewController.resultLabelTwo = "You win!"
             } else {
                 resultsViewController.resultLabelTwo = "You lose!"
+                resultsViewController.correctWord = "The secret word was \(rules.secretWord)"
                 //resultsViewController.rightWordLabel.text = "The secret word was \(rules.secretWord)"
             }
         }
