@@ -19,28 +19,18 @@ class ResultsViewController: UIViewController {
     var rules = HangmanBrain()
     var resultLabelTwo: String!
     var correctWord: String!
-    var number: Int?
+    //var number: Int =  nil
     
-
+////MUST INITIALIZE ALL VARIABLES THAT ARE BEIG SEGUED OVER
+    var buttonHidden = false
     override func viewDidLoad() {
         super.viewDidLoad()
-//        resultLabel.text = resultLabelTwo
-//        rightWordLabel?.isHidden = false
-//        winImage?.isHidden = true
-        switch number {
-        case 1?://win
-            resultLabel.text = "You win!"
-            winImage.isHidden = false
-        case 2?: //lose
-            resultLabel.text = "You lose!"
-            rightWordLabel.isHidden = false
-            rightWordLabel.text = "The secret word was \(rules.secretWord)"
-            winImage.isHidden = true
-        default:
-            break
-        }
+        
+        resultLabel.text = resultLabelTwo
+        rightWordLabel.text = "The correct word was "
+        rightWordLabel?.isHidden = false
+        winImage.image = #imageLiteral(resourceName: "winImage")
     }
-    
     @IBAction func playAgainButton(_ sender: UIButton) {
         //performing segue back to View Controller
         performSegue(withIdentifier: "playAgainSegue", sender: self)

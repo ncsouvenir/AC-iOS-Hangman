@@ -36,7 +36,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         secretWordTextField.delegate = self
         letterTextField.delegate = self
     }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         //can only enter letters a-z
         let characterSet = CharacterSet.letters
@@ -58,14 +57,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         return true
     }
-    
-    //clears letter textfield upon guessing letter
+    //clears letter textfield upon clicking on textfield
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == letterTextField {
             letterTextField.text = ""
         }
     }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //make sure that the text field has something in ti otherwise don't run
         guard let text = textField.text  else {
@@ -92,8 +89,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 gameUpdateLabel.isHidden = false
                 gameUpdateLabel.text = "Correct! Guess another letter."
                 usedLettersLabel.isHidden = false
-                let putInUsedArray = rules.appendToUsedLettersArray(text.lowercased())
-                usedLettersLabel.text = "used letters: \(putInUsedArray)"
+                //rules.usedLettersArray.append(text)
+                
+                ///here I am creating an instance of the function and calling it 
+                let usedLetters = rules.appendToUsedLettersArray(from: text.lowercased())
+                usedLettersLabel.text = usedLetters.joined(separator: " ")
                 textField.resignFirstResponder()
             case .wrong:
                 switch rules.numberOfWrongGuessesLeft {
@@ -117,9 +117,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 textField.resignFirstResponder()
                 gameUpdateLabel.isHidden = false
                 gameUpdateLabel.text = "Wrong! \(rules.numberOfWrongGuessesLeft) guesses left"
-                let putInUsedArray = rules.appendToUsedLettersArray(text.lowercased())
-                usedLettersLabel.text = "used letters: \(putInUsedArray)"
                 usedLettersLabel.isHidden = false
+                //rules.usedLettersArray.append(text)
+                let usedLetters = rules.appendToUsedLettersArray(from: text.lowercased())
+                usedLettersLabel.text = usedLetters.joined(separator: " ")
             }
             switch rules.victoryCheck(){
             case .victory:
@@ -149,20 +150,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         secretWordTextField.isEnabled = true
     }
     //preparing segue to ResultsViewController
+    var buttonHidden = false
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let resultsViewController = segue.destination as? ResultsViewController{
             //passing data over to ResultsViewController
             if gameUpdateLabel.text == "victory"{
-                resultsViewController.number
-//                resultsViewController.resultLabelTwo = "You win!"
-//                resultsViewController.winImage?.isHidden = false
+                resultsViewController.resultLabelTwo = "You win!"
+                resultsViewController.winImage?.isHidden = false
+                resultsViewController.rightWordLabel?.isHidden = true
             } else {
-                resultsViewController.number
-//                resultsViewController.resultLabelTwo = "You lose!"
-//                //not appearing when segued to ResultsViewCOntroller
-//                resultsViewController.rightWordLabel?.isHidden = false
-//                resultsViewController.rightWordLabel?.text = "The secret word was \(rules.secretWord)"
-//                resultsViewController.winImage?.isHidden = true
+                resultsViewController.resultLabelTwo = "You lose! The secret word was \(rules.secretWord)"
+                resultsViewController.rightWordLabel?.isHidden = false
+                //resultsViewController.rightWordLabel?.text = "The secret word was \(rules.secretWord)"
+                resultsViewController.winImage?.isHidden = true
             }
         }
     }

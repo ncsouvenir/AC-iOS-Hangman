@@ -39,15 +39,15 @@ class HangmanBrain {
         return gameBoardArray
     }
     ///func that appends letters guessed into usedLettersArray
-    func appendToUsedLettersArray(_ playerGuess: String) -> String{
-        //for letter in playerGuess {
-            if gameBoardArray.contains(playerGuess) || !gameBoardArray.contains(playerGuess){
+    func appendToUsedLettersArray(from playerGuess: String) -> [String]{
+        var letterCount = 0
+        for letter in 0..<playerGuess.count {
+            if !gameBoardArray.contains(playerGuess) || gameBoardArray.contains(playerGuess){
                 usedLettersArray.append(playerGuess)
-                //keep adding letter to usedLettersArray every iteration
-                //letter += 1
+                letterCount += 1
             }
-        //}
-        return playerGuess
+        }
+        return usedLettersArray
     }
     ///func for guessing letter
     func getGuessedLetter(from playerGuess: String) -> GameStateUpdate {
