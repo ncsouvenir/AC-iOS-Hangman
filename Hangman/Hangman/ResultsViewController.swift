@@ -15,30 +15,27 @@ class ResultsViewController: UIViewController {
     @IBOutlet weak var resultLabel: UILabel! //you win or you lose
     @IBOutlet weak var rightWordLabel: UILabel!
     @IBOutlet weak var winImage: UIImageView!
-    
+    //Have to set these varibales as Optionals
     var rules = HangmanBrain()
     var resultLabelTwo: String!
-    var correctWord: String!
-    //var number: Int =  nil
+    var secretWordReveal: String!
+    var happyPerson: UIImage!
     
-////MUST INITIALIZE ALL VARIABLES THAT ARE BEIG SEGUED OVER
-    var buttonHidden = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //MUST INITIALIZE ALL VARIABLES THAT ARE BEIG SEGUED OVER//
         resultLabel.text = resultLabelTwo
-        rightWordLabel.text = "The correct word was "
-        rightWordLabel?.isHidden = false
-        winImage.image = #imageLiteral(resourceName: "winImage")
+        rightWordLabel.text = secretWordReveal
+        winImage.image = happyPerson
     }
     @IBAction func playAgainButton(_ sender: UIButton) {
         //performing segue back to View Controller
         performSegue(withIdentifier: "playAgainSegue", sender: self)
     }
-    //dont need to prepare segue becuase you're not passing any data... just pressing a button
-    }
+    //dont need to prepare segue becuase you're not passing any data... Just pressing a button.
+}
 
-    
 
-    
+
+
 

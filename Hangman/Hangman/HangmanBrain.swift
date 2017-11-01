@@ -8,9 +8,7 @@
 import Foundation
 
 enum GameStateUpdate {
-    case correct
-    case wrong
-    case alreadyUsed
+    case correct, wrong, alreadyUsed
 }
 class HangmanBrain {
     enum GameState {
@@ -19,9 +17,9 @@ class HangmanBrain {
     var secretWord: String = ""
     var gameBoardArray = [String]() // ["_", "_" ,"_"]
     var usedLettersArray: [String] = []
-    var numberOfWrongGuessesLeft = 7
+    var numberOfGuessesLeft = 7
     
-    ///func for creating secret
+    ///func for creating secret word
     func makeGameBoard(from word: String) -> [String]{
         //This sets the empty gameBoard to length of secret word
         for _ in 0..<word.count {
@@ -40,11 +38,9 @@ class HangmanBrain {
     }
     ///func that appends letters guessed into usedLettersArray
     func appendToUsedLettersArray(from playerGuess: String) -> [String]{
-        var letterCount = 0
-        for letter in 0..<playerGuess.count {
+        for _ in 0..<playerGuess.count {
             if !gameBoardArray.contains(playerGuess) || gameBoardArray.contains(playerGuess){
                 usedLettersArray.append(playerGuess)
-                letterCount += 1
             }
         }
         return usedLettersArray
@@ -53,21 +49,18 @@ class HangmanBrain {
     func getGuessedLetter(from playerGuess: String) -> GameStateUpdate {
         //correct and wrong letter check
         if !secretWord.contains(playerGuess){
-            //usedLettersArray.append(playerGuess)
-            numberOfWrongGuessesLeft -= 1
-            usedLettersArray.append(playerGuess)
+            numberOfGuessesLeft -= 1
             return .wrong
         }
         if usedLettersArray.contains(playerGuess) {
             return .alreadyUsed
         }
-        //usedLettersArray.append(playerGuess)
         print(playerGuess)
         return .correct
     }
     ///func for result scenario
     func victoryCheck() -> GameState {
-        if numberOfWrongGuessesLeft == 0 {
+        if numberOfGuessesLeft == 0 {
             return .defeat
         }
         if !gameBoardArray.contains("_") {
@@ -76,6 +69,7 @@ class HangmanBrain {
         return .ongoing
     }
 }//end of class
+
 
 
 
